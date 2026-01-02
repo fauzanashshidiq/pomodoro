@@ -15,8 +15,8 @@ export default defineConfig({
       navigateFallback: 'index.html',
       },
       manifest: {
-        name: 'Retro Pomodoro',
-        short_name: 'Pomodoro',
+        name: 'Pomo-Gear',
+        short_name: 'Pomo-Gear',
         description: 'A Retro Themed Pomodoro Timer',
         theme_color: '#efe7d8',
         icons: [
