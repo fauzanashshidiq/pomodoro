@@ -19,23 +19,27 @@ function App() {
   const activeTask = tasks.find(t => t.id === activeTaskId);
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-10 px-4">
+    <div className="min-h-screen flex flex-col items-center py-10 px-4 gap-8">
       {/* Title with retro shadow text effect */}
-      <h1 className="text-5xl md:text-6xl font-bold mb-8 text-retro-yellow" 
+      <h1 className="text-5xl md:text-6xl font-bold mb-2 text-retro-yellow text-center" 
           style={{ textShadow: '4px 4px 0px #1d3557, -1px -1px 0 #1d3557, 1px -1px 0 #1d3557, -1px 1px 0 #1d3557, 1px 1px 0 #1d3557' }}>
         POMO-GEAR
       </h1>
       
-      <Timer
-        timeLeft={timeLeft}
-        isRunning={isRunning}
-        startTimer={startTimer}
-        pauseTimer={pauseTimer}
-        resetTimer={resetTimer}
-        activeTaskName={activeTask ? activeTask.text : null}
-      />
+      {/* WRAPPER 1: TIMER - Standardized Width */}
+      <div className="w-full max-w-md">
+        <Timer
+          timeLeft={timeLeft}
+          isRunning={isRunning}
+          startTimer={startTimer}
+          pauseTimer={pauseTimer}
+          resetTimer={resetTimer}
+          activeTaskName={activeTask ? activeTask.text : null}
+        />
+      </div>
 
-      <div className="w-full max-w-md mt-6">
+      {/* WRAPPER 2: TASKS - Standardized Width */}
+      <div className="w-full max-w-md">
         <div className="bg-white border-4 border-retro-dark shadow-retro p-6 rounded-xl relative">
             <h2 className="text-2xl font-bold mb-4 text-retro-dark flex items-center gap-2">
                 <span>TASKS</span>

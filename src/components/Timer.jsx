@@ -29,7 +29,7 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
   };
 
   return (
-    <div className="flex flex-col items-center p-8 bg-white border-4 border-retro-dark shadow-retro rounded-xl mb-6 w-full max-w-md relative overflow-hidden">
+    <div className="flex flex-col items-center p-8 bg-white border-4 border-retro-dark shadow-retro rounded-xl w-full relative overflow-hidden">
       
       {/* Decorative bolts */}
       <div className="absolute top-2 left-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
@@ -38,7 +38,7 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
       <div className="absolute bottom-2 right-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
 
       {/* Active Task Display */}
-      <div className="mb-6 h-10 flex items-center justify-center w-full bg-retro-dark bg-opacity-5 rounded border-2 border-dashed border-retro-dark">
+      <div className="mb-6 minimum-height-10 min-h-[2.5rem] flex items-center justify-center w-full bg-retro-dark bg-opacity-5 rounded border-2 border-dashed border-retro-dark">
         {activeTaskName ? (
            <div className="text-retro-blue font-bold text-lg flex items-center gap-2 px-4 animate-pulse">
              <span className="text-xs uppercase tracking-wider text-retro-red">TARGET:</span>
@@ -69,7 +69,7 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
               : 'bg-white text-retro-dark hover:bg-gray-100'
           }`}
         >
-          Short
+          Short Break
         </button>
         <button
           onClick={() => handleModeChange('long')}
@@ -79,11 +79,11 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
               : 'bg-white text-retro-dark hover:bg-gray-100'
           }`}
         >
-          Long
+          Long Break
         </button>
       </div>
 
-      <div className="relative mb-8 bg-retro-dark text-retro-yellow px-8 py-4 rounded border-4 border-retro-dark shadow-inner">
+      <div className="relative mb-8 bg-retro-dark text-retro-yellow px-8 py-4 rounded border-4 border-retro-dark shadow-inner w-full flex justify-center">
         <div className="text-6xl font-bold font-mono tracking-widest relative z-10">
             {formatTime(timeLeft)}
         </div>
@@ -121,3 +121,4 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
 };
 
 export default Timer;
+
