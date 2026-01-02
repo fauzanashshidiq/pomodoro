@@ -29,80 +29,90 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, active
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg mb-6 w-full max-w-md">
+    <div className="flex flex-col items-center p-8 bg-white border-4 border-retro-dark shadow-retro rounded-xl mb-6 w-full max-w-md relative overflow-hidden">
       
+      {/* Decorative bolts */}
+      <div className="absolute top-2 left-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
+      <div className="absolute top-2 right-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
+      <div className="absolute bottom-2 left-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
+      <div className="absolute bottom-2 right-2 w-3 h-3 bg-gray-300 border-2 border-retro-dark rounded-full"></div>
+
       {/* Active Task Display */}
-      <div className="mb-4 h-8 flex items-center justify-center w-full">
+      <div className="mb-6 h-10 flex items-center justify-center w-full bg-retro-dark bg-opacity-5 rounded border-2 border-dashed border-retro-dark">
         {activeTaskName ? (
-           <div className="text-blue-300 font-medium text-lg animate-pulse flex items-center gap-2">
-             <span className="opacity-70 text-sm uppercase tracking-wider">Focusing on:</span>
-             <span className="font-bold text-white max-w-[200px] truncate">{activeTaskName}</span>
+           <div className="text-retro-blue font-bold text-lg flex items-center gap-2 px-4 animate-pulse">
+             <span className="text-xs uppercase tracking-wider text-retro-red">TARGET:</span>
+             <span className="truncate max-w-[200px]">{activeTaskName}</span>
            </div>
         ) : (
-          <div className="text-gray-500 italic text-sm">Select a task below to focus</div>
+          <div className="text-gray-400 font-mono text-sm uppercase">Select Mission Below</div>
         )}
       </div>
 
       {/* Mode Buttons */}
-      <div className="flex gap-2 mb-6 w-full justify-center">
+      <div className="flex gap-3 mb-6 w-full justify-center">
         <button
           onClick={() => handleModeChange('pomodoro')}
-          className={`flex-1 px-3 py-1 text-sm rounded transition font-bold ${
+          className={`flex-1 px-2 py-1 text-sm rounded border-2 border-retro-dark transition font-bold uppercase tracking-wider ${
             activeMode === 'pomodoro' 
-              ? 'bg-red-500 text-white shadow' 
-              : 'bg-transparent text-gray-400 hover:bg-gray-700 hover:text-white'
+              ? 'bg-retro-red text-white shadow-retro-sm translate-y-[-2px]' 
+              : 'bg-white text-retro-dark hover:bg-gray-100'
           }`}
         >
           Pomodoro
         </button>
         <button
           onClick={() => handleModeChange('short')}
-          className={`flex-1 px-3 py-1 text-sm rounded transition font-bold ${
+          className={`flex-1 px-2 py-1 text-sm rounded border-2 border-retro-dark transition font-bold uppercase tracking-wider ${
             activeMode === 'short' 
-              ? 'bg-teal-500 text-white shadow' 
-              : 'bg-transparent text-gray-400 hover:bg-gray-700 hover:text-white'
+              ? 'bg-retro-blue text-white shadow-retro-sm translate-y-[-2px]' 
+              : 'bg-white text-retro-dark hover:bg-gray-100'
           }`}
         >
           Short
         </button>
         <button
           onClick={() => handleModeChange('long')}
-          className={`flex-1 px-3 py-1 text-sm rounded transition font-bold ${
+          className={`flex-1 px-2 py-1 text-sm rounded border-2 border-retro-dark transition font-bold uppercase tracking-wider ${
             activeMode === 'long' 
-              ? 'bg-blue-500 text-white shadow' 
-              : 'bg-transparent text-gray-400 hover:bg-gray-700 hover:text-white'
+              ? 'bg-retro-yellow text-retro-dark shadow-retro-sm translate-y-[-2px]' 
+              : 'bg-white text-retro-dark hover:bg-gray-100'
           }`}
         >
           Long
         </button>
       </div>
 
-      <div className="text-7xl font-bold mb-8 font-mono text-white tracking-widest relative">
-        {formatTime(timeLeft)}
+      <div className="relative mb-8 bg-retro-dark text-retro-yellow px-8 py-4 rounded border-4 border-retro-dark shadow-inner">
+        <div className="text-6xl font-bold font-mono tracking-widest relative z-10">
+            {formatTime(timeLeft)}
+        </div>
+        {/* shine effect */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-white opacity-10 rounded-t"></div>
       </div>
 
       <div className="flex gap-4 w-full">
         {!isRunning ? (
           <button
             onClick={startTimer}
-            className="flex-1 px-6 py-3 bg-white text-gray-900 hover:bg-gray-200 rounded font-bold transition text-lg uppercase tracking-wide"
+            className="flex-1 px-6 py-3 bg-retro-red text-white border-2 border-retro-dark hover:bg-red-500 rounded font-bold transition text-xl uppercase tracking-wide shadow-retro active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Start
           </button>
         ) : (
           <button
             onClick={pauseTimer}
-            className="flex-1 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded font-bold transition text-lg uppercase tracking-wide"
+            className="flex-1 px-6 py-3 bg-retro-yellow text-retro-dark border-2 border-retro-dark hover:bg-yellow-400 rounded font-bold transition text-xl uppercase tracking-wide shadow-retro active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Pause
           </button>
         )}
         <button
           onClick={() => resetTimer()}
-          className="px-6 py-3 border-2 border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white rounded font-bold transition"
+          className="px-4 py-3 bg-white text-retro-dark border-2 border-retro-dark hover:bg-gray-100 rounded font-bold transition shadow-retro active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
         </button>
       </div>
