@@ -44,11 +44,10 @@ const useTasks = () => {
     if (activeTaskId === id) setActiveTaskId(null);
   };
 
-  const selectActiveTask = (id) => {
-    setActiveTaskId(id);
-  };
+  const selectActiveTask = (id) => { setActiveTaskId((prev) => (prev === id ? null : id)); };
 
   return { tasks, activeTaskId, addTask, toggleTask, addSession, deleteTask, selectActiveTask };
 };
 
 export default useTasks;
+

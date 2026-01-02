@@ -1,4 +1,4 @@
-﻿const TaskItem = ({ task, toggleTask, addSession, deleteTask, isActive, selectActiveTask }) => {
+﻿const TaskItem = ({ task, toggleTask, deleteTask, isActive, selectActiveTask }) => {
   return (
     <div
       className={`relative flex items-center justify-between w-full p-4 mb-2 rounded border-2 border-retro-dark transition-all ${
@@ -11,7 +11,7 @@
       <div 
         className="absolute inset-0 cursor-pointer" 
         onClick={() => selectActiveTask(task.id)}
-        title="Click to set as active task"
+        title="Click to toggle selection"
       ></div>
 
       <div className="flex items-center gap-3 flex-1 overflow-hidden z-10">
@@ -58,25 +58,7 @@
           <span className="text-retro-cream mr-1 text-xs uppercase">Sess:</span>
           <span className="font-bold text-retro-yellow font-mono">{task.sessions}</span>
         </div>
-        <button
-          onClick={(e) => { e.stopPropagation(); addSession(task.id); }}
-          title="Add Session"
-          className="p-1.5 text-retro-dark bg-retro-cream border-2 border-retro-dark hover:bg-yellow-200 rounded transition shadow-sm active:translate-y-[1px]"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="3"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-            />
-          </svg>
-        </button>
+
         <button
           onClick={(e) => { e.stopPropagation(); deleteTask(task.id); }}
           title="Delete Task"
