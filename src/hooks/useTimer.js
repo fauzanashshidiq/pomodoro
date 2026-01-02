@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect, useRef } from 'react';
 
-const useTimer = (defaultTime = 25 * 60) => {
+const useTimer = (defaultTime = 25 * 60, onComplete) => {
   const [timeLeft, setTimeLeft] = useState(defaultTime);
   const [initialTime, setInitialTime] = useState(defaultTime);
   const [isRunning, setIsRunning] = useState(false);
@@ -27,10 +27,11 @@ const useTimer = (defaultTime = 25 * 60) => {
     } else if (timeLeft === 0) {
       setIsRunning(false);
       alert("Time is up!");
+      if (onComplete) onComplete();
     }
 
     return () => clearInterval(timerRef.current);
-  }, [isRunning, timeLeft]);
+  }, [isRunning, timeLeft, onComplete]);
 
   return { timeLeft, isRunning, startTimer, pauseTimer, resetTimer };
 };

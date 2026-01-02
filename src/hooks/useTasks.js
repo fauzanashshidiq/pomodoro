@@ -5,6 +5,7 @@ const useTasks = () => {
     const saved = localStorage.getItem('pomodoro_data');
     return saved ? JSON.parse(saved) : [];
   });
+  const [activeTaskId, setActiveTaskId] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('pomodoro_data', JSON.stringify(tasks));
@@ -18,6 +19,8 @@ const useTasks = () => {
       sessions: 0,
     };
     setTasks((prev) => [...prev, newTask]);
+    // Auto-select if it's the first task
+    if (tasks.length === 0) setActiveTaskId(newTask.id);
   };
 
   const toggleTask = (id) => {
@@ -38,9 +41,14 @@ const useTasks = () => {
 
   const deleteTask = (id) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
+    if (activeTaskId === id) setActiveTaskId(null);
   };
 
-  return { tasks, addTask, toggleTask, addSession, deleteTask };
+  const selectActiveTask = (id) => {
+    setActiveTaskId(id);
+  };
+
+  return { tasks, activeTaskId, addTask, toggleTask, addSession, deleteTask, selectActiveTask };
 };
 
 export default useTasks;

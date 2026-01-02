@@ -1,6 +1,6 @@
 ﻿import { useState } from 'react';
 
-const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer }) => {
+const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer, activeTaskName }) => {
   const [activeMode, setActiveMode] = useState('pomodoro');
 
   const formatTime = (seconds) => {
@@ -31,6 +31,18 @@ const Timer = ({ timeLeft, isRunning, startTimer, pauseTimer, resetTimer }) => {
   return (
     <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg mb-6 w-full max-w-md">
       
+      {/* Active Task Display */}
+      <div className="mb-4 h-8 flex items-center justify-center w-full">
+        {activeTaskName ? (
+           <div className="text-blue-300 font-medium text-lg animate-pulse flex items-center gap-2">
+             <span className="opacity-70 text-sm uppercase tracking-wider">Focusing on:</span>
+             <span className="font-bold text-white max-w-[200px] truncate">{activeTaskName}</span>
+           </div>
+        ) : (
+          <div className="text-gray-500 italic text-sm">Select a task below to focus</div>
+        )}
+      </div>
+
       {/* Mode Buttons */}
       <div className="flex gap-2 mb-6 w-full justify-center">
         <button
