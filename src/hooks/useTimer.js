@@ -2,14 +2,21 @@
 
 const useTimer = (defaultTime = 25 * 60) => {
   const [timeLeft, setTimeLeft] = useState(defaultTime);
+  const [initialTime, setInitialTime] = useState(defaultTime);
   const [isRunning, setIsRunning] = useState(false);
   const timerRef = useRef(null);
 
   const startTimer = () => setIsRunning(true);
   const pauseTimer = () => setIsRunning(false);
-  const resetTimer = () => {
+  
+  const resetTimer = (newDuration = null) => {
     setIsRunning(false);
-    setTimeLeft(defaultTime);
+    if (newDuration !== null) {
+      setInitialTime(newDuration);
+      setTimeLeft(newDuration);
+    } else {
+      setTimeLeft(initialTime);
+    }
   };
 
   useEffect(() => {
@@ -19,7 +26,7 @@ const useTimer = (defaultTime = 25 * 60) => {
       }, 1000);
     } else if (timeLeft === 0) {
       setIsRunning(false);
-      alert("Pomodoro session finished!");
+      alert("Time is up!");
     }
 
     return () => clearInterval(timerRef.current);
